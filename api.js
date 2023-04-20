@@ -18,7 +18,13 @@ api.listen(3000, () => {
 // ROUTES
 
 // books
+import booksRouter from "./routes/books.js"
+api.use("/books", booksRouter)
 
 // authors
+import authorsRouter from "./routes/authors.js"
+api.use("/authors", authorsRouter)
 
 // genres
+import genresRouter from "./routes/genres.js"
+api.use("/genres", genresRouter)
