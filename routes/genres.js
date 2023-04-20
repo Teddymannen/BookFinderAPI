@@ -8,7 +8,7 @@ import mongoose, { Schema } from 'mongoose'
 
 // create genre Schema
 const genreSchema = new Schema({
-    genre: String
+    genre: { type: String, required: true, unique: true }
 })
 
 // create collection model
