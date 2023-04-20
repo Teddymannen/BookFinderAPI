@@ -1,13 +1,15 @@
 # Documentation
 
-## Overview
 
-*Begin with a brief overview of the API, explaining its purpose, benefits, and target audience. This section should give readers a clear understanding of what the API does and why it exists.*
 
 
 ## Authentication and Authorization
 
-*If the API requires authentication or authorization, provide clear instructions on how to obtain the necessary credentials, such as API keys, tokens, or OAuth. Include examples of how to use these credentials in API requests.*
+To access the BookFinder API you need a MongoDB connection string for the BookFinder database. 
+
+The MongoDB connection string looks like this:
+
+`mongodb+srv://<username>:<password>@bookfinder.dms8kzw.mongodb.net/test` 
 
 ## Endpoint Structure
 
