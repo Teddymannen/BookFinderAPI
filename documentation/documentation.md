@@ -11,9 +11,27 @@ The MongoDB connection string looks like this:
 
 `mongodb+srv://<username>:<password>@bookfinder.dms8kzw.mongodb.net/test` 
 
+We build the string in secrets.js.placeholder and rename it to secrets.js.
+
+Username and password is sent to you by email.
+
 ## Endpoint Structure
 
-*Clearly describe the base URL and structure of the endpoints, including the HTTP methods supported (GET, POST, PUT, DELETE, etc.). Organize endpoints logically, grouping related endpoints together.*
+The base URL: `http://localhost:3000/api/`
+
+The API has the following endpoints:
+ 
+- Endpoints: 
+    - `GET /{collection}` - get all documents in a collection
+    - `GET /{collection}/{id}` - get a single document by id
+    - `POST /{collection}` - create a new document
+    - `PUT /{collection}/{id}` - update a document by id
+    - `DELETE /{collection}/{id}` - delete a document by id
+
+- Collections: 
+    - `books`
+    - `authors`
+    - `genres`
 
 ## Request Parameters
 
@@ -25,7 +43,45 @@ The MongoDB connection string looks like this:
 
 ## Request Examples
 
-*Include example requests for each endpoint, demonstrating how to use the various parameters and headers. Use consistent formatting and code snippets to make it easy for readers to understand and implement.*
+The request examples work similarly for all endpoints.
+
+### Post new book
+
+`POST http://localhost:3000/api/books`
+
+**Request body**
+```json
+{
+    "title": "Lord of the rings",
+    "author": ["64410ea760dfea55cbeca4d0", "64410ea760dfea55cbeca4d0"],
+    "genre": ["644110ca60dfea55cbeca4df", "644112eb7b5d5ae395e755f8"],
+    "releaseDate": "2020-12-31",
+    "rating": 5
+}
+```
+
+### Get all books
+
+`GET http://localhost:3000/api/books`
+
+### Get a specific book
+
+`GET http://localhost:3000/api/books/644112fa7b5d5ae395e755fa`
+
+### Update a specific book
+
+`PUT http://localhost:3000/api/books/644112fa7b5d5ae395e755fa`
+
+**Request body**
+```json
+{
+    "rating": 4
+}
+```
+
+### Delete a specific book
+
+`DELETE http://localhost:3000/api/books/644112fa7b5d5ae395e755fa`
 
 ## Response Structure
 
