@@ -8,11 +8,20 @@ import mongoose, { Schema } from 'mongoose'
 
 // create book Schema
 const bookSchema = new Schema({
-    title: String,
+    title: { type: String, required: true },
     author: [{ type: mongoose.Schema.Types.ObjectId, ref: 'authors' }],
-    genre: [{ type: mongoose.Schema.Types.ObjectId, ref: 'genres' }],
+    genre: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'genres',
+        validate: {
+            validator: function (v) {
+                return v.length > 0
+            },
+            message: 'A book must have at least one genre'
+        }
+    },
     releaseDate: Date,
-    rating: Number
+    rating: { type: Number, min: 0, max: 5 },
 })
 
 // create collection model
@@ -28,8 +37,16 @@ booksRouter.post('/', async (req, res) => {
             res.send(book); // return the new book
         })
         .catch(err => {
-            const error = unexpectedError()
-            res.status(error.status).send({ message: error.message })
+            console.log(err) // for debugging
+            if (err.name === 'ValidationError') {
+                const error = err.message
+                res.status(400).send({ message: error })
+                return
+            }
+            else {
+                const error = unexpectedError()
+                res.status(error.status).send({ message: error.message })
+            }
         })
 })
 
@@ -88,8 +105,16 @@ booksRouter.put('/:id', async (req, res) => {
             }
         })
         .catch(err => {
-            const error = unexpectedError()
-            res.status(error.status).send({ message: error.message })
+            console.log(err) // for debugging
+            if (err.name === 'ValidationError') {
+                const error = err.message
+                res.status(400).send({ message: error })
+                return
+            }
+            else {
+                const error = unexpectedError()
+                res.status(error.status).send({ message: error.message })
+            }
         })
 })
 
