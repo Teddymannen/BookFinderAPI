@@ -19,12 +19,12 @@ api.listen(3000, () => {
 
 // books
 import booksRouter from "./routes/books.js"
-api.use("/books", booksRouter)
+api.use("/api/books", booksRouter)
 
 // authors
 import authorsRouter from "./routes/authors.js"
-api.use("/authors", authorsRouter)
+api.use("/api/authors", authorsRouter)
 
 // genres
 import genresRouter from "./routes/genres.js"
-api.use("/genres", genresRouter)
+api.use("/api/genres", genresRouter)
