@@ -1,6 +1,7 @@
 // create a sub router for the authors route
 import Router from 'express'
 const authorsRouter = Router()
+import { notFoundError, invalidIdError, unexpectedError } from '../error-messages/error-messages.js'
 
 // import mongoose and Schema so we can create schemas and query our collection
 import mongoose, { Schema } from 'mongoose'
@@ -8,7 +9,7 @@ import mongoose, { Schema } from 'mongoose'
 // create author Schema
 const authorSchema = new Schema({
     name: { type: String, required: true },
-    age: Number,
+    age: { type: Number, required: true, min: 0, max: 120 },
     alive: Boolean
 })
 
@@ -32,7 +33,7 @@ authorsRouter.post('/', async (req, res) => {
 
 // GET /authors
 authorsRouter.get('/', async (req, res) => {
-    Crimes.find()
+    Authors.find()
         .then(authors => {
             res.send(authors)
         })
@@ -48,7 +49,7 @@ authorsRouter.get('/:id', async (req, res) => {
         res.status(error.status).send({ message: error.message })
         return
     }
-    Crimes.findById(req.params.id)
+    Authors.findById(req.params.id)
         .then(author => {
             if (author) {
                 res.send(author)
