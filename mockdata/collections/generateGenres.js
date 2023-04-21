@@ -1,6 +1,5 @@
 // GENRES
 import { Genres } from '../../routes/genres.js'
-import { faker } from '@faker-js/faker'
 import fs from 'fs'
 
 let genres = []
