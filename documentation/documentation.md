@@ -113,11 +113,59 @@ The request examples work similarly for all endpoints.
 
 ## Response Structure
 
-*Describe the structure of the API response, including the format (JSON, XML, etc.) and the various elements within the response. Explain the meaning of each element and any possible values.*
+`GET` requests are populated with data from other collections while `POST`, `PUT` and `DELETE` only return the ids in the fields that reference another collection.
+
+**`POST`**: Returns the newly created dokument
+
+**`GET` collection**: Returns a list of dokuments
+
+**`PUT`**: Returns the updated dokument
+
+**`DELETE`**: Returns the deleted dokument
+
+**`GET` id:**
+
+### Books
+
+`GET http://localhost:3000/api/books/{id}`
+
+property | description | data type
+--- | --- | ---
+_id | The id of the book | string
+title | The title of the book | string
+author | The author of the book | array
+genre | The genre of the book | array
+releaseDate | The release date of the book | date
+rating | The rating of the book | number
+__v | Version Key | number
+
+### Authors
+
+`GET http://localhost:3000/api/authors/{id}` 
+
+property | description | data type
+--- | --- | ---
+_id | The id of the author | string
+name | The name of the author | string
+age | The age of the author | number
+alive | The status of the author | boolean
+__v | Version Key | number
+
+### Genres 
+
+`GET http://localhost:3000/api/genres/{id}`
+
+property | description | data type
+--- | --- | ---
+_id | The id of the genre | string
+genre | The genre of the book | string
+__v | Version Key | number
 
 ## Response Examples
 
 *Provide example responses for each endpoint, showcasing both successful and error scenarios. These examples should help developers understand what to expect when interacting with the API.*
+
+
 
 ## Error Handling
 
