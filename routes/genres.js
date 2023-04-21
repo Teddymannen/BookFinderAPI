@@ -12,7 +12,7 @@ const genreSchema = new Schema({
 })
 
 // create collection model
-const Genres = mongoose.model('genres', genreSchema)
+export const Genres = mongoose.model('genres', genreSchema)
 
 // define routes
 
