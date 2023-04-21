@@ -14,7 +14,7 @@ const authorSchema = new Schema({
 })
 
 // create collection model
-const Authors = mongoose.model('authors', authorSchema)
+export const Authors = mongoose.model('authors', authorSchema)
 
 // define routes
 
