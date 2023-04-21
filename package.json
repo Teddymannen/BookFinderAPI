@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon api.js",
-    "start": "node api.js"
+    "start": "node api.js",
+    "gen-data": "node ./mockdata/generate-data.js",
+    "gen-json": "node ./mockdata/generate-json.js"
   },
   "author": "",
   "license": "ISC",
