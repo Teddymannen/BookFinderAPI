@@ -1,0 +1,456 @@
+[
+    {
+        "title": "recusandae consectetur",
+        "author": [
+            {
+                "name": "Benny Gorczany",
+                "age": 113,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Cookbooks"
+            },
+            {
+                "genre": "Comics and Graphic Novels"
+            },
+            {
+                "genre": "Mystery"
+            }
+        ],
+        "releaseDate": "2022-09-29T10:41:38.045Z",
+        "rating": 5
+    },
+    {
+        "title": "dolorem",
+        "author": [
+            {
+                "name": "Cecil Leuschke DVM",
+                "age": 78,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Action and Adventure"
+            },
+            {
+                "genre": "Travel"
+            }
+        ],
+        "releaseDate": "2022-11-06T17:04:04.449Z",
+        "rating": 2
+    },
+    {
+        "title": "maxime",
+        "author": [
+            {
+                "name": "Mr. Christina Thiel",
+                "age": 73,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Action and Adventure"
+            },
+            {
+                "genre": "Cookbooks"
+            },
+            {
+                "genre": "Suspense and Thrillers"
+            }
+        ],
+        "releaseDate": "2022-09-08T08:10:18.444Z",
+        "rating": 0
+    },
+    {
+        "title": "cum maxime commodi",
+        "author": [
+            {
+                "name": "Mrs. Jennifer Kilback",
+                "age": 89,
+                "alive": false
+            },
+            {
+                "name": "Nina Hickle",
+                "age": 91,
+                "alive": true
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Satire"
+            },
+            {
+                "genre": "Essay"
+            },
+            {
+                "genre": "Young Adult"
+            }
+        ],
+        "releaseDate": "2022-07-22T12:34:24.799Z",
+        "rating": 4
+    },
+    {
+        "title": "nam quas suscipit",
+        "author": [
+            {
+                "name": "Monica Yundt Sr.",
+                "age": 16,
+                "alive": false
+            },
+            {
+                "name": "Pauline Vandervort",
+                "age": 70,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Action and Adventure"
+            },
+            {
+                "genre": "Westerns"
+            },
+            {
+                "genre": "Travel"
+            }
+        ],
+        "releaseDate": "2022-12-05T00:22:36.777Z",
+        "rating": 3
+    },
+    {
+        "title": "voluptates fugiat distinctio",
+        "author": [
+            {
+                "name": "Phillip Runolfsson",
+                "age": 46,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Religion and Spirituality"
+            }
+        ],
+        "releaseDate": "2022-10-01T22:36:10.897Z",
+        "rating": 4
+    },
+    {
+        "title": "quas quidem",
+        "author": [
+            {
+                "name": "Nina Hickle",
+                "age": 91,
+                "alive": true
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Short Stories"
+            },
+            {
+                "genre": "Drama"
+            },
+            {
+                "genre": "Religion and Spirituality"
+            }
+        ],
+        "releaseDate": "2022-08-30T08:30:33.369Z",
+        "rating": 3
+    },
+    {
+        "title": "explicabo vel",
+        "author": [
+            {
+                "name": "Clark Nitzsche",
+                "age": 92,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Science Fiction"
+            },
+            {
+                "genre": "Crime and Detective"
+            },
+            {
+                "genre": "Self-help"
+            }
+        ],
+        "releaseDate": "2023-03-22T17:30:28.221Z",
+        "rating": 0
+    },
+    {
+        "title": "beatae odit ipsam",
+        "author": [
+            {
+                "name": "Benny Gorczany",
+                "age": 113,
+                "alive": false
+            },
+            {
+                "name": "Enrique Monahan",
+                "age": 114,
+                "alive": true
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Religion and Spirituality"
+            },
+            {
+                "genre": "Action and Adventure"
+            }
+        ],
+        "releaseDate": "2022-11-21T05:39:31.410Z",
+        "rating": 0
+    },
+    {
+        "title": "alias dolores",
+        "author": [
+            {
+                "name": "Miss Leo Keebler",
+                "age": 42,
+                "alive": true
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Mystery"
+            },
+            {
+                "genre": "Essay"
+            },
+            {
+                "genre": "Children's"
+            }
+        ],
+        "releaseDate": "2022-07-13T09:23:26.252Z",
+        "rating": 5
+    },
+    {
+        "title": "adipisci",
+        "author": [
+            {
+                "name": "Ms. Sean Corkery",
+                "age": 119,
+                "alive": false
+            },
+            {
+                "name": "Mr. Christina Thiel",
+                "age": 73,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Science Fiction"
+            },
+            {
+                "genre": "Children's"
+            },
+            {
+                "genre": "Suspense and Thrillers"
+            }
+        ],
+        "releaseDate": "2022-06-19T13:38:18.284Z",
+        "rating": 5
+    },
+    {
+        "title": "mollitia autem",
+        "author": [
+            {
+                "name": "Winifred Bartell",
+                "age": 50,
+                "alive": true
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Religion and Spirituality"
+            }
+        ],
+        "releaseDate": "2022-12-26T04:10:43.321Z",
+        "rating": 3
+    },
+    {
+        "title": "expedita",
+        "author": [
+            {
+                "name": "Cecil Leuschke DVM",
+                "age": 78,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Historical Fiction"
+            },
+            {
+                "genre": "Comics and Graphic Novels"
+            }
+        ],
+        "releaseDate": "2022-05-17T05:06:10.996Z",
+        "rating": 2
+    },
+    {
+        "title": "pariatur consectetur eos",
+        "author": [
+            {
+                "name": "Renee Kassulke",
+                "age": 66,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Satire"
+            },
+            {
+                "genre": "Horror"
+            },
+            {
+                "genre": "Westerns"
+            }
+        ],
+        "releaseDate": "2022-06-13T02:06:26.838Z",
+        "rating": 5
+    },
+    {
+        "title": "occaecati ducimus sint",
+        "author": [
+            {
+                "name": "Pauline Vandervort",
+                "age": 70,
+                "alive": false
+            },
+            {
+                "name": "Mr. Christina Thiel",
+                "age": 73,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Science Fiction"
+            },
+            {
+                "genre": "Religion and Spirituality"
+            }
+        ],
+        "releaseDate": "2022-06-17T23:12:05.006Z",
+        "rating": 4
+    },
+    {
+        "title": "neque autem",
+        "author": [
+            {
+                "name": "Ms. Sean Corkery",
+                "age": 119,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Action and Adventure"
+            }
+        ],
+        "releaseDate": "2022-12-02T21:08:01.006Z",
+        "rating": 0
+    },
+    {
+        "title": "eius numquam",
+        "author": [
+            {
+                "name": "Cecil Leuschke DVM",
+                "age": 78,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Children's"
+            },
+            {
+                "genre": "Essay"
+            },
+            {
+                "genre": "Satire"
+            }
+        ],
+        "releaseDate": "2022-12-14T20:16:50.641Z",
+        "rating": 3
+    },
+    {
+        "title": "at neque",
+        "author": [
+            {
+                "name": "Nina Hickle",
+                "age": 91,
+                "alive": true
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Satire"
+            },
+            {
+                "genre": "Fantasy"
+            },
+            {
+                "genre": "True Crime"
+            }
+        ],
+        "releaseDate": "2022-05-20T08:41:48.004Z",
+        "rating": 2
+    },
+    {
+        "title": "odio molestiae optio",
+        "author": [
+            {
+                "name": "Miss Steve Kunze",
+                "age": 18,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Science and Technology"
+            },
+            {
+                "genre": "Horror"
+            }
+        ],
+        "releaseDate": "2023-01-21T04:27:15.964Z",
+        "rating": 5
+    },
+    {
+        "title": "aliquam quos",
+        "author": [
+            {
+                "name": "Cecil Leuschke DVM",
+                "age": 78,
+                "alive": false
+            },
+            {
+                "name": "Ms. Sean Corkery",
+                "age": 119,
+                "alive": false
+            }
+        ],
+        "genre": [
+            {
+                "genre": "Satire"
+            },
+            {
+                "genre": "Comics and Graphic Novels"
+            }
+        ],
+        "releaseDate": "2022-11-08T11:18:32.725Z",
+        "rating": 1
+    }
+]
