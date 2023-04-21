@@ -37,9 +37,37 @@ The API has the following endpoints:
 
 *For each endpoint, list all required and optional parameters, their data types, and a brief description of their purpose. Include any constraints or validation rules for the parameters.*
 
-## Request Headers
+When using PUT requests, you only need to send the parameters you want to update. Otherwise the parameters below are the same.
 
-*If applicable, provide a list of required and optional headers for each endpoint, along with their purpose and valid values.*
+### Endpoint for creating a new book.
+
+`POST /books`
+
+Parameter | Description | Data type | Required | Constraints
+--- | --- | --- | --- | ---
+title | The title of the book | string | yes |
+author | The author of the book | array | no |
+genre | The genre of the book | array | yes | at least one genre
+releaseDate | The release date of the book | date | no |
+rating | The rating of the book | number | no | 0-5
+
+### Endpoint for creating a new author. 
+
+`POST /authors`
+
+Parameter | Description | Data type | Required | Constraints
+--- | --- | --- | --- | ---
+name | The name of the author | string | yes |
+age | The age of the author | number | no | 0-120
+alive | The status of the author | boolean | no |
+
+### Endpoint for creating a new genre.
+
+`POST /genres`
+
+Parameter | Description | Data type | Required | Constraints
+--- | --- | --- | --- | ---
+genre | The genre of the book | string | yes | must be unique
 
 ## Request Examples
 
