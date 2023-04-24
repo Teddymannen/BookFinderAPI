@@ -31,7 +31,11 @@ genresRouter.post('/', async (req, res) => {
 
 // GET /genres
 genresRouter.get('/', async (req, res) => {
+    const perPage = parseInt(req.query.limit) || 5
+    const page = req.query.page - 1 || 0
     Genres.find()
+        .limit(perPage)
+        .skip(perPage * page)
         .then(genres => {
             res.send(genres)
         })
@@ -39,6 +43,7 @@ genresRouter.get('/', async (req, res) => {
             const error = unexpectedError()
             res.status(error.status).send({ message: error.message })
         })
+    res.header('Page', page + 1)
 })
 
 // GET /genres/:id
