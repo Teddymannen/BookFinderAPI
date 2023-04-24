@@ -50,9 +50,43 @@ booksRouter.post('/', async (req, res) => {
         })
 })
 
+import { Authors } from './authors.js' // import the authors model
+import { Genres } from './genres.js' // import the genres model
+
 // GET /books
 booksRouter.get('/', async (req, res) => {
-    Books.find()
+    const perPage = parseInt(req.query.limit) || 5
+    const page = req.query.page - 1 || 0
+    let releaseDateSearch = {}
+    if (req.query.releaseAfter) {
+        releaseDateSearch.$gte = new Date(req.query.releaseAfter)
+    }
+    if (req.query.releaseBefore) {
+        releaseDateSearch.$lte = new Date(req.query.releaseBefore)
+    }
+    if (Object.values(releaseDateSearch).length === 0) {
+        console.log('no release date search')
+        releaseDateSearch = { $exists: true }
+    }
+
+    Books.find({
+        // Search by title, author, genre, releaseDate, and/or rating. If no query is provided, return all books. The search query is case insensitive and will return partial matches.
+
+        // search for books with a title that contains the query. Case insensitive.
+        title: req.query.title ? { $regex: req.query.title, $options: 'i' } : { $exists: true },
+        // search for books with an author that contains the query. Case insensitive.
+        author: req.query.author ? { $in: await Authors.find({ name: { $regex: req.query.author, $options: 'i' } }).select('_id') } : { $exists: true },
+        // search for books with a genre that contains the query. Case insensitive.
+        genre: req.query.genre ? { $in: await Genres.find({ genre: { $regex: req.query.genre, $options: 'i' } }).select('_id') } : { $exists: true },
+        // search for books with a release date that matches the query
+        // releaseDate: req.query.releaseDate ? { $gte: req.query.releaseDate, $lte: req.query.releaseDate } : { $exists: true },
+
+        releaseDate: releaseDateSearch,
+        // search for books with a rating that matches the query
+        rating: req.query.rating ? { $eq: req.query.rating } : { $exists: true }
+    })
+        .limit(perPage)
+        .skip(perPage * page)
         .populate('author')
         .populate('genre')
         .then(books => {
@@ -60,8 +94,10 @@ booksRouter.get('/', async (req, res) => {
         })
         .catch(err => {
             const error = unexpectedError()
+            console.log(err)
             res.status(error.status).send({ message: error.message })
         })
+    res.header('Page', page + 1)
 })
 
 // GET /books/:id
