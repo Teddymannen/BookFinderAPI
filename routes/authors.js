@@ -33,7 +33,23 @@ authorsRouter.post('/', async (req, res) => {
 
 // GET /authors
 authorsRouter.get('/', async (req, res) => {
-    Authors.find()
+    const perPage = parseInt(req.query.limit) || 5
+    const page = req.query.page - 1 || 0
+    Authors.find({
+        // Search by name, age, and/or alive. If no query is provided, return all authors. 
+        //
+        // search for authors with a name that contains the query. Case insensitive.
+        // if the query is not provided, it will be ignored
+        name: { $regex: req.query.name || '', $options: 'i' },
+        // search for age higher than or lower than a certain value.
+        // if the query is not provided, it will be ignored
+        age: { $gte: req.query.minAge || 0, $lte: req.query.maxAge || 120 },
+        // search for authors that are alive or dead
+        // if the query is not provided, it will be ignored. 
+        alive: req.query.alive || { $in: [true, false] }
+    })
+        .limit(perPage)
+        .skip(perPage * page)
         .then(authors => {
             res.send(authors)
         })
@@ -41,6 +57,7 @@ authorsRouter.get('/', async (req, res) => {
             const error = unexpectedError()
             res.status(error.status).send({ message: error.message })
         })
+    res.header('Page', page + 1)
 })
 // GET /authors/:id
 authorsRouter.get('/:id', async (req, res) => {
