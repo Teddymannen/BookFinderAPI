@@ -35,8 +35,6 @@ The API has the following endpoints:
 
 ## Request Parameters
 
-*For each endpoint, list all required and optional parameters, their data types, and a brief description of their purpose. Include any constraints or validation rules for the parameters.*
-
 When using PUT requests, you only need to send the parameters you want to update. Otherwise the parameters below are the same.
 
 ### Endpoint for creating a new book.
@@ -68,6 +66,30 @@ alive | The status of the author | boolean | no |
 Parameter | Description | Data type | Required | Constraints
 --- | --- | --- | --- | ---
 genre | The genre of the book | string | yes | must be unique
+
+`GET /books?{parameter}={value}`
+
+Parameter | Description | Data type | Required | Constraints
+--- | --- | --- | --- | ---
+page | The page number | number | no | 
+limit | The number of documents per page | number | no | must be a number or default value is used
+title | The title of the book | string | no | case insensitive
+author | The author of the book | string | no | case insensitive
+genre | The genre of the book | string | no | case insensitive
+
+`GET /authors?{parameter}={value}`
+
+Parameter | Description | Data type | Required | Constraints
+--- | --- | --- | --- | ---
+page | The page number | number | no |
+limit | The number of documents per page | number | no | must be a number or default value is used
+
+`GET /genres?{parameter}={value}`
+
+Parameter | Description | Data type | Required | Constraints
+--- | --- | --- | --- | ---
+page | The page number | number | no |
+limit | The number of documents per page | number | no | must be a number or default value is used
 
 ## Request Examples
 
@@ -165,7 +187,317 @@ __v | Version Key | number
 
 *Provide example responses for each endpoint, showcasing both successful and error scenarios. These examples should help developers understand what to expect when interacting with the API.*
 
+### Get all books. (Success. Status: 200)
 
+`GET http://localhost:3000/api/books`
+
+**Response body**
+
+```json
+[
+    {
+        "_id": "644291e91b3fa7a38116df49",
+        "title": "neque",
+        "author": [
+            {
+                "_id": "644291e81b3fa7a38116df11",
+                "name": "Dr. Maureen Gleichner",
+                "age": 119,
+                "alive": false,
+                "__v": 0
+            },
+            {
+                "_id": "644291e81b3fa7a38116df09",
+                "name": "Oscar Dooley",
+                "age": 97,
+                "alive": true,
+                "__v": 0
+            }
+        ],
+        "genre": [
+            {
+                "_id": "644291e91b3fa7a38116df3e",
+                "genre": "True Crime",
+                "__v": 0
+            },
+            {
+                "_id": "644291e91b3fa7a38116df3a",
+                "genre": "Suspense and Thrillers",
+                "__v": 0
+            }
+        ],
+        "releaseDate": "2023-02-12T07:36:59.170Z",
+        "rating": 3,
+        "__v": 0
+    },
+    {
+        "_id": "644291e91b3fa7a38116df4b",
+        "title": "autem sint",
+        "author": [
+            {
+                "_id": "644291e81b3fa7a38116def9",
+                "name": "Geneva Murazik",
+                "age": 15,
+                "alive": true,
+                "__v": 0
+            },
+            {
+                "_id": "644291e81b3fa7a38116def0",
+                "name": "Ms. Gregory Schumm DVM",
+                "age": 113,
+                "alive": false,
+                "__v": 0
+            }
+        ],
+        "genre": [
+            {
+                "_id": "644291e91b3fa7a38116df3c",
+                "genre": "Travel",
+                "__v": 0
+            },
+            {
+                "_id": "644291e81b3fa7a38116df1e",
+                "genre": "Cookbooks",
+                "__v": 0
+            }
+        ],
+        "releaseDate": "2022-06-16T05:14:05.858Z",
+        "rating": 4,
+        "__v": 0
+    }
+]
+```
+
+### Get all books. (Failure. Status: 404)
+
+`GET http://localhost:3000/api/book` (Wrong endpoint)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Error</title>
+</head>
+
+<body>
+	<pre>Cannot GET /api/book</pre>
+</body>
+
+</html>
+```
+
+### Post new book. (Success. Status: 201)
+
+`POST http://localhost:3000/api/books`
+
+**Request body**
+
+```json
+{
+    "title": "Test of the rings",
+    "author": ["64410ea760dfea55cbeca4d0", "64410ea760dfea55cbeca4d0"],
+    "genre": ["644110ca60dfea55cbeca4df"],
+    "releaseDate": "2020-12-31",
+    "rating": 5
+}
+```
+
+**Response body**
+
+```json
+{
+    "title": "Test of the rings",
+    "author": [
+        "64410ea760dfea55cbeca4d0",
+        "64410ea760dfea55cbeca4d0"
+    ],
+    "genre": [
+        "644110ca60dfea55cbeca4df"
+    ],
+    "releaseDate": "2020-12-31T00:00:00.000Z",
+    "rating": 5,
+    "_id": "644632cb0dea9fd7a6fa99bf",
+    "__v": 0
+}
+```
+
+### Post new book. (Failure. Status: 400)
+
+`POST http://localhost:3000/api/books`
+
+**Request body**
+
+Missing genre
+
+```json
+{
+    "title": "Test of the rings",
+    "author": ["64410ea760dfea55cbeca4d0", "64410ea760dfea55cbeca4d0"],
+    "releaseDate": "2020-12-31",
+    "rating": 5
+}
+``` 
+
+**Response body**
+
+```json 
+{
+    "message": "books validation failed: genre: A book must have at least one genre"
+}
+```
+
+### Get a specific book by id. (Success. Status: 200)
+
+`GET http://localhost:3000/api/books/644291e91b3fa7a38116df6f`
+
+**Response body**
+
+```json
+{
+    "_id": "644291e91b3fa7a38116df6f",
+    "title": "sint maiores",
+    "author": [
+        {
+            "_id": "644291e81b3fa7a38116df09",
+            "name": "Oscar Dooley",
+            "age": 97,
+            "alive": true,
+            "__v": 0
+        },
+        {
+            "_id": "644291e81b3fa7a38116def7",
+            "name": "Edwin Harris",
+            "age": 33,
+            "alive": true,
+            "__v": 0
+        }
+    ],
+    "genre": [
+        {
+            "_id": "644291e91b3fa7a38116df32",
+            "genre": "Satire",
+            "__v": 0
+        },
+        {
+            "_id": "644291e91b3fa7a38116df40",
+            "genre": "Westerns",
+            "__v": 0
+        },
+        {
+            "_id": "644291e91b3fa7a38116df3e",
+            "genre": "True Crime",
+            "__v": 0
+        }
+    ],
+    "releaseDate": "2022-07-14T19:10:07.600Z",
+    "rating": 0,
+    "__v": 0
+}
+```
+
+### Get a specific book by id. (Failure. Status: 404)
+
+`GET http://localhost:3000/api/books/aaaaaaaaaaaaaaaaaaaaaaaa`
+
+**Response body**
+
+```json
+{
+    "message": "Not found"
+}
+```
+
+### Update a book by id. (Success. Status: 200)
+
+`PUT http://localhost:3000/api/books/644632cb0dea9fd7a6fa99bf`
+
+**Request body**
+
+```json
+{
+    "author": ["644291e81b3fa7a38116deec"],
+    "genre": ["644291e81b3fa7a38116df16"]
+}
+```
+
+**Response body**
+
+```json
+{
+    "_id": "644632cb0dea9fd7a6fa99bf",
+    "title": "Test of the rings",
+    "author": [
+        "644291e81b3fa7a38116deec"
+    ],
+    "genre": [
+        "644291e81b3fa7a38116df16"
+    ],
+    "releaseDate": "2020-12-31T00:00:00.000Z",
+    "rating": 5,
+    "__v": 0
+}
+```
+
+### Update a book by id. (Failure. Status: 500)
+
+`PUT http://localhost:3000/api/books/644632cb0dea9fd7a6fa99bf` 
+
+**Request body**
+
+```json
+{
+    "author": ["644291e81b3fa7a38116deec"],
+    "genre": {} 
+}
+```
+Must have at least one genre
+
+**Response body**
+
+```json
+{
+    "message": "Unexpected error"
+}
+```
+
+### Delete a book by id. (Success. Status: 200)
+
+`DELETE http://localhost:3000/api/books/644291e91b3fa7a38116df6f`
+
+**Response body**
+
+```json
+{
+    "_id": "644291e91b3fa7a38116df6f",
+    "title": "sint maiores",
+    "author": [
+        "644291e81b3fa7a38116df09",
+        "644291e81b3fa7a38116def7"
+    ],
+    "genre": [
+        "644291e91b3fa7a38116df32",
+        "644291e91b3fa7a38116df40",
+        "644291e91b3fa7a38116df3e"
+    ],
+    "releaseDate": "2022-07-14T19:10:07.600Z",
+    "rating": 0,
+    "__v": 0
+}
+```
+
+### Delete a book by id. (Failure. Status: 400)
+
+`DELETE http://localhost:3000/api/books/644291e91b3fa7a38116df4_123123123`
+
+**Response body**
+
+```json
+{
+    "message": "Invalid ID"
+}
+```
 
 ## Error Handling
 
