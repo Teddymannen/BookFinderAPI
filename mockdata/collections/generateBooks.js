@@ -13,15 +13,19 @@ async function generateBooks(clear = true) {
     // delete all
     await Books.deleteMany()
 
-    // generate 20 books
-    for (let i = 0; i < 20; i++) {
+    // generate 100 books
+    for (let i = 0; i < 100; i++) {
+        const isPastDate = faker.datatype.boolean() // 50% chance of past date or future date
+        const releaseDate = isPastDate // if past date, generate past date, else generate future date
+            ? faker.date.past(15)
+            : faker.date.future(2);
         const numOfAuthors = faker.datatype.number({ min: 1, max: 2 })
         const numOfGenres = faker.datatype.number({ min: 1, max: 3 })
         const book = new Books({
             title: faker.lorem.words(faker.datatype.number({ min: 1, max: 3 })),
             author: faker.helpers.uniqueArray(authors, numOfAuthors),
             genre: faker.helpers.uniqueArray(genres, numOfGenres),
-            releaseDate: faker.date.past(),
+            releaseDate: releaseDate,
             rating: faker.datatype.number({ min: 0, max: 5 })
         })
         try {
