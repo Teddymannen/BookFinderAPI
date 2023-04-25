@@ -70,7 +70,8 @@ booksRouter.get('/', async (req, res) => {
     }
 
     Books.find({
-        // Search by title, author, genre, releaseDate, and/or rating. If no query is provided, return all books. The search query is case insensitive and will return partial matches.
+        // Search by title, author, genre, releaseDate, and/or rating. If no query is provided, return all books.
+        //The search query is case insensitive and will return partial matches.
 
         // search for books with a title that contains the query. Case insensitive.
         title: req.query.title ? { $regex: req.query.title, $options: 'i' } : { $exists: true },
@@ -79,8 +80,6 @@ booksRouter.get('/', async (req, res) => {
         // search for books with a genre that contains the query. Case insensitive.
         genre: req.query.genre ? { $in: await Genres.find({ genre: { $regex: req.query.genre, $options: 'i' } }).select('_id') } : { $exists: true },
         // search for books with a release date that matches the query
-        // releaseDate: req.query.releaseDate ? { $gte: req.query.releaseDate, $lte: req.query.releaseDate } : { $exists: true },
-
         releaseDate: releaseDateSearch,
         // search for books with a rating that matches the query
         rating: req.query.rating ? { $eq: req.query.rating } : { $exists: true }
