@@ -43,7 +43,8 @@ async function generateBooksJson(clear = true) {
     if (!clear) {
         books = JSON.parse(fs.readFileSync('./json-mockdata/books.json'))
     }
-    for (let i = 0; i < 20; i++) {
+    // generate 100 books
+    for (let i = 0; i < 100; i++) {
         const numOfAuthors = faker.datatype.number({ min: 1, max: 2 })
         const numOfGenres = faker.datatype.number({ min: 1, max: 3 })
         const book = {
