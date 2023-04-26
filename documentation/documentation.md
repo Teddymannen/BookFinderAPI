@@ -76,6 +76,9 @@ limit | The number of documents per page | number | no | must be a number or def
 title | The title of the book | string | no | case insensitive
 author | The author of the book | string | no | case insensitive
 genre | The genre of the book | string | no | case insensitive
+releaseDate | The release date of the book | date | no |
+rating | The rating of the book | number | no | 0-5
+sort | put a minus sign in front of the value to sort in descending order | string | no | Valid values: title, releaseDate, rating. Default value: title. Default order: ascending. Can sort by multiple values by separating them with an ampersand (&). Example: `sort=-rating&sort=title`
 
 `GET /authors?{parameter}={value}`
 
@@ -83,6 +86,11 @@ Parameter | Description | Data type | Required | Constraints
 --- | --- | --- | --- | ---
 page | The page number | number | no |
 limit | The number of documents per page | number | no | must be a number or default value is used
+name | The name of the author | string | no | case insensitive
+minAge | The minimum age of the author | number | no | 0-120
+maxAge | The maximum age of the author | number | no | 0-120
+alive | The status of the author | boolean | no |
+sort | put a minus sign in front of the value to sort in descending order | string | no | Valid values: name, age, alive. Default value: name. Default order: ascending. Can sort by multiple values by separating them with an ampersand (&). Example: `sort=-age&sort=name`
 
 `GET /genres?{parameter}={value}`
 
@@ -90,6 +98,8 @@ Parameter | Description | Data type | Required | Constraints
 --- | --- | --- | --- | ---
 page | The page number | number | no |
 limit | The number of documents per page | number | no | must be a number or default value is used
+genre | The genre of the book | string | no | case insensitive
+sort | put a minus sign in front of the value to sort in descending order | string | no | Valid values: genre. Default value: genre. Default order: ascending. Can sort by multiple values by separating them with an ampersand (&). Although, there is only one value to sort by in this case. Example: `sort=-genre`
 
 ## Request Examples
 
@@ -113,6 +123,26 @@ The request examples work similarly for all endpoints.
 ### Get all books
 
 `GET http://localhost:3000/api/books`
+
+### Get all books with a rating of 5
+
+`GET http://localhost:3000/api/books?rating=5`
+
+### Get all books with a rating of 4 and a genre of fantasy
+
+`GET http://localhost:3000/api/books?rating=4&genre=fantasy`
+
+### Get all books sorted by rating in descending order
+
+`GET http://localhost:3000/api/books?sort=-rating`
+
+### Get all books sorted by rating in descending order and title in ascending order
+
+`GET http://localhost:3000/api/books?sort=-rating&sort=title`
+
+### Get all books sorted by rating in descending order on page 2 with 8 books per page
+
+`GET http://localhost:3000/api/books?page=2&limit=8&sort=-rating`
 
 ### Get a specific book
 
@@ -502,6 +532,13 @@ Must have at least one genre
 ## Error Handling
 
 *List all possible error codes and their meanings, along with guidance on how to handle these errors in the client application. This will help developers troubleshoot issues and create more robust applications.*
+
+Error message | Description | Possible solution
+--- | --- | ---
+Not found | The resource was not found | Check the resource ID 
+Invalid ID | The resource ID is invalid | Check the resource ID
+Unexpected error | An unexpected error occurred | Contact the API provider (or check the logs if you have access)
+Validation error | The request body is invalid | Check the request body
 
 ## Rate Limiting and Throttling
 
