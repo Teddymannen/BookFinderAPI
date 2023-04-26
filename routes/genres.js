@@ -33,7 +33,15 @@ genresRouter.post('/', async (req, res) => {
 genresRouter.get('/', async (req, res) => {
     const perPage = parseInt(req.query.limit) || 5
     const page = req.query.page - 1 || 0
+
+    let sort = req.query.sort || 'genre' // default sort by genre
+    if (typeof sort === 'string') { // if sort is a string, convert it to an array
+        sort = [sort]
+    }
+    const joinSort = sort.join(' ') // join the sort array into a string
+
     Genres.find()
+        .sort(joinSort)
         .limit(perPage)
         .skip(perPage * page)
         .then(genres => {
