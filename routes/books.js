@@ -57,6 +57,13 @@ import { Genres } from './genres.js' // import the genres model
 booksRouter.get('/', async (req, res) => {
     const perPage = parseInt(req.query.limit) || 5
     const page = req.query.page - 1 || 0
+
+    let sort = req.query.sort || 'title' // default sort by title
+    if (typeof sort === 'string') { // if sort is a string, convert it to an array
+        sort = [sort]
+    }
+    const joinSort = sort.join(' ') // join the sort array into a string
+
     let releaseDateSearch = {}
     if (req.query.releaseAfter) {
         releaseDateSearch.$gte = new Date(req.query.releaseAfter)
@@ -65,7 +72,6 @@ booksRouter.get('/', async (req, res) => {
         releaseDateSearch.$lte = new Date(req.query.releaseBefore)
     }
     if (Object.values(releaseDateSearch).length === 0) {
-        console.log('no release date search')
         releaseDateSearch = { $exists: true }
     }
 
@@ -84,6 +90,7 @@ booksRouter.get('/', async (req, res) => {
         // search for books with a rating that matches the query
         rating: req.query.rating ? { $eq: req.query.rating } : { $exists: true }
     })
+        .sort(joinSort)
         .limit(perPage)
         .skip(perPage * page)
         .populate('author')
