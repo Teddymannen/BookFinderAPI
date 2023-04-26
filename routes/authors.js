@@ -35,6 +35,13 @@ authorsRouter.post('/', async (req, res) => {
 authorsRouter.get('/', async (req, res) => {
     const perPage = parseInt(req.query.limit) || 5
     const page = req.query.page - 1 || 0
+
+    let sort = req.query.sort || 'name' // default sort by name
+    if (typeof sort === 'string') { // if sort is a string, convert it to an array
+        sort = [sort]
+    }
+    const joinSort = sort.join(' ') // join the array into a string
+
     Authors.find({
         // Search by name, age, and/or alive. If no query is provided, return all authors. 
         //
@@ -48,6 +55,7 @@ authorsRouter.get('/', async (req, res) => {
         // if the query is not provided, it will be ignored. 
         alive: req.query.alive || { $in: [true, false] }
     })
+        .sort(joinSort)
         .limit(perPage)
         .skip(perPage * page)
         .then(authors => {
