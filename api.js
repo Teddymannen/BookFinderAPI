@@ -10,10 +10,15 @@ const connection = mongoURL
 
 // start web server 
 api.listen(3000, () => {
-  // and connect to database
-  mongoose.connect(connection, { dbName: 'BookFinder' })
-  console.log("Connected to http://localhost:3000")
+    // and connect to database
+    mongoose.connect(connection, { dbName: 'BookFinder' })
+    console.log("Connected to http://localhost:3000")
 })
+
+// Use token bucket
+import limitRequests from "./classes/TokenBucket.js"
+
+api.use(limitRequests(1, 10)) // 1 request per second, max burst 10
 
 // ROUTES
 
