@@ -40,7 +40,13 @@ genresRouter.get('/', async (req, res) => {
     }
     const joinSort = sort.join(' ') // join the sort array into a string
 
-    Genres.find()
+    Genres.find({
+        // Search by genre. If no query is provided, return all genres.
+        //
+        // search for genres that contain the query. Case insensitive.
+        // if the query is not provided, it will be ignored
+        genre: { $regex: req.query.genre || '', $options: 'i' }
+    })
         .sort(joinSort)
         .limit(perPage)
         .skip(perPage * page)
