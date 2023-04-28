@@ -30,7 +30,7 @@ export default function limitRequests(perSecond, maxBurst) {
         if (bucket.take()) {
             next();
         } else {
-            res.status(429).send('Rate limit exceeded');
+            res.status(429).send({ message: 'Rate limit exceeded' });
         }
     }
 }
