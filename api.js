@@ -18,7 +18,7 @@ api.listen(3000, () => {
 // Use token bucket
 import limitRequests from "./classes/TokenBucket.js"
 
-api.use(limitRequests(1, 10)) // 1 request per second, max burst 10
+api.use(limitRequests(2, 50)) // 1 request per 5 seconds, max burst 50
 
 // ROUTES
 
