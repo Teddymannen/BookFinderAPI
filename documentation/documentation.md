@@ -2,6 +2,41 @@
 
 
 
+- [Documentation](#documentation)
+  - [Authentication and Authorization](#authentication-and-authorization)
+  - [Endpoint Structure](#endpoint-structure)
+  - [Request Parameters](#request-parameters)
+    - [Endpoint for creating a new book.](#endpoint-for-creating-a-new-book)
+    - [Endpoint for creating a new author.](#endpoint-for-creating-a-new-author)
+    - [Endpoint for creating a new genre.](#endpoint-for-creating-a-new-genre)
+  - [Request Examples](#request-examples)
+    - [Post new book](#post-new-book)
+    - [Get all books](#get-all-books)
+    - [Get all books with a rating of 5](#get-all-books-with-a-rating-of-5)
+    - [Get all books with a rating of 4 and a genre of fantasy](#get-all-books-with-a-rating-of-4-and-a-genre-of-fantasy)
+    - [Get all books sorted by rating in descending order](#get-all-books-sorted-by-rating-in-descending-order)
+    - [Get all books sorted by rating in descending order and title in ascending order](#get-all-books-sorted-by-rating-in-descending-order-and-title-in-ascending-order)
+    - [Get all books sorted by rating in descending order on page 2 with 8 books per page](#get-all-books-sorted-by-rating-in-descending-order-on-page-2-with-8-books-per-page)
+    - [Get a specific book](#get-a-specific-book)
+    - [Update a specific book](#update-a-specific-book)
+    - [Delete a specific book](#delete-a-specific-book)
+  - [Response Structure](#response-structure)
+    - [Books](#books)
+    - [Authors](#authors)
+    - [Genres](#genres)
+  - [Response Examples](#response-examples)
+    - [Get all books. (Success. Status: 200)](#get-all-books-success-status-200)
+    - [Get all books. (Failure. Status: 404)](#get-all-books-failure-status-404)
+    - [Post new book. (Success. Status: 201)](#post-new-book-success-status-201)
+    - [Post new book. (Failure. Status: 400)](#post-new-book-failure-status-400)
+    - [Get a specific book by id. (Success. Status: 200)](#get-a-specific-book-by-id-success-status-200)
+    - [Get a specific book by id. (Failure. Status: 404)](#get-a-specific-book-by-id-failure-status-404)
+    - [Update a book by id. (Success. Status: 200)](#update-a-book-by-id-success-status-200)
+    - [Update a book by id. (Failure. Status: 500)](#update-a-book-by-id-failure-status-500)
+    - [Delete a book by id. (Success. Status: 200)](#delete-a-book-by-id-success-status-200)
+    - [Delete a book by id. (Failure. Status: 400)](#delete-a-book-by-id-failure-status-400)
+  - [Error Handling](#error-handling)
+  - [Rate Limiting and Throttling](#rate-limiting-and-throttling)
 
 ## Authentication and Authorization
 
@@ -41,65 +76,65 @@ When using PUT requests, you only need to send the parameters you want to update
 
 `POST /books`
 
-Parameter | Description | Data type | Required | Constraints
---- | --- | --- | --- | ---
-title | The title of the book | string | yes |
-author | The author of the book | array | no |
-genre | The genre of the book | array | yes | at least one genre
-releaseDate | The release date of the book | date | no |
-rating | The rating of the book | number | no | 0-5
+| Parameter   | Description                  | Data type | Required | Constraints        |
+| ----------- | ---------------------------- | --------- | -------- | ------------------ |
+| title       | The title of the book        | string    | yes      |
+| author      | The author of the book       | array     | no       |
+| genre       | The genre of the book        | array     | yes      | at least one genre |
+| releaseDate | The release date of the book | date      | no       |
+| rating      | The rating of the book       | number    | no       | 0-5                |
 
 ### Endpoint for creating a new author. 
 
 `POST /authors`
 
-Parameter | Description | Data type | Required | Constraints
---- | --- | --- | --- | ---
-name | The name of the author | string | yes |
-age | The age of the author | number | no | 0-120
-alive | The status of the author | boolean | no |
+| Parameter | Description              | Data type | Required | Constraints |
+| --------- | ------------------------ | --------- | -------- | ----------- |
+| name      | The name of the author   | string    | yes      |
+| age       | The age of the author    | number    | no       | 0-120       |
+| alive     | The status of the author | boolean   | no       |
 
 ### Endpoint for creating a new genre.
 
 `POST /genres`
 
-Parameter | Description | Data type | Required | Constraints
---- | --- | --- | --- | ---
-genre | The genre of the book | string | yes | must be unique
+| Parameter | Description           | Data type | Required | Constraints    |
+| --------- | --------------------- | --------- | -------- | -------------- |
+| genre     | The genre of the book | string    | yes      | must be unique |
 
 `GET /books?{parameter}={value}`
 
-Parameter | Description | Data type | Required | Constraints
---- | --- | --- | --- | ---
-page | The page number | number | no | 
-limit | The number of documents per page | number | no | must be a number or default value is used
-title | The title of the book | string | no | case insensitive
-author | The author of the book | string | no | case insensitive
-genre | The genre of the book | string | no | case insensitive
-releaseDate | The release date of the book | date | no |
-rating | The rating of the book | number | no | 0-5
-sort | put a minus sign in front of the value to sort in descending order | string | no | Valid values: title, releaseDate, rating. Default value: title. Default order: ascending. Can sort by multiple values by separating them with an ampersand (&). Example: `sort=-rating&sort=title`
+| Parameter   | Description                                                        | Data type | Required | Constraints                                                                                                                                                                                        |
+| ----------- | ------------------------------------------------------------------ | --------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| page        | The page number                                                    | number    | no       |
+| limit       | The number of documents per page                                   | number    | no       | must be a number or default value is used                                                                                                                                                          |
+| title       | The title of the book                                              | string    | no       | case insensitive                                                                                                                                                                                   |
+| author      | The author of the book                                             | string    | no       | case insensitive                                                                                                                                                                                   |
+| genre       | The genre of the book                                              | string    | no       | case insensitive                                                                                                                                                                                   |
+| releaseDate | The release date of the book                                       | date      | no       |
+| rating      | The rating of the book                                             | number    | no       | 0-5                                                                                                                                                                                                |
+| sort        | put a minus sign in front of the value to sort in descending order | string    | no       | Valid values: title, releaseDate, rating. Default value: title. Default order: ascending. Can sort by multiple values by separating them with an ampersand (&). Example: `sort=-rating&sort=title` |
 
 `GET /authors?{parameter}={value}`
 
-Parameter | Description | Data type | Required | Constraints
---- | --- | --- | --- | ---
-page | The page number | number | no |
-limit | The number of documents per page | number | no | must be a number or default value is used
-name | The name of the author | string | no | case insensitive
-minAge | The minimum age of the author | number | no | 0-120
-maxAge | The maximum age of the author | number | no | 0-120
-alive | The status of the author | boolean | no |
-sort | put a minus sign in front of the value to sort in descending order | string | no | Valid values: name, age, alive. Default value: name. Default order: ascending. Can sort by multiple values by separating them with an ampersand (&). Example: `sort=-age&sort=name`
+| Parameter | Description                                                        | Data type | Required | Constraints                                                                                                                                                                         |
+| --------- | ------------------------------------------------------------------ | --------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| page      | The page number                                                    | number    | no       |
+| limit     | The number of documents per page                                   | number    | no       | must be a number or default value is used                                                                                                                                           |
+| name      | The name of the author                                             | string    | no       | case insensitive                                                                                                                                                                    |
+| minAge    | The minimum age of the author                                      | number    | no       | 0-120                                                                                                                                                                               |
+| maxAge    | The maximum age of the author                                      | number    | no       | 0-120                                                                                                                                                                               |
+| alive     | The status of the author                                           | boolean   | no       |
+| sort      | put a minus sign in front of the value to sort in descending order | string    | no       | Valid values: name, age, alive. Default value: name. Default order: ascending. Can sort by multiple values by separating them with an ampersand (&). Example: `sort=-age&sort=name` |
 
 `GET /genres?{parameter}={value}`
 
-Parameter | Description | Data type | Required | Constraints
---- | --- | --- | --- | ---
-page | The page number | number | no |
-limit | The number of documents per page | number | no | must be a number or default value is used
-genre | The genre of the book | string | no | case insensitive
-sort | put a minus sign in front of the value to sort in descending order | string | no | Valid values: genre. Default value: genre. Default order: ascending. Can sort by multiple values by separating them with an ampersand (&). Although, there is only one value to sort by in this case. Example: `sort=-genre`
+| Parameter | Description                                                        | Data type | Required | Constraints                                                                                                                                                                                                                  |
+| --------- | ------------------------------------------------------------------ | --------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| page      | The page number                                                    | number    | no       |
+| limit     | The number of documents per page                                   | number    | no       | must be a number or default value is used                                                                                                                                                                                    |
+| genre     | The genre of the book                                              | string    | no       | case insensitive                                                                                                                                                                                                             |
+| sort      | put a minus sign in front of the value to sort in descending order | string    | no       | Valid values: genre. Default value: genre. Default order: ascending. Can sort by multiple values by separating them with an ampersand (&). Although, there is only one value to sort by in this case. Example: `sort=-genre` |
 
 ## Request Examples
 
@@ -181,41 +216,39 @@ The request examples work similarly for all endpoints.
 
 `GET http://localhost:3000/api/books/{id}`
 
-property | description | data type
---- | --- | ---
-_id | The id of the book | string
-title | The title of the book | string
-author | The author of the book | array
-genre | The genre of the book | array
-releaseDate | The release date of the book | date
-rating | The rating of the book | number
-__v | Version Key | number
+| property    | description                  | data type |
+| ----------- | ---------------------------- | --------- |
+| _id         | The id of the book           | string    |
+| title       | The title of the book        | string    |
+| author      | The author of the book       | array     |
+| genre       | The genre of the book        | array     |
+| releaseDate | The release date of the book | date      |
+| rating      | The rating of the book       | number    |
+| __v         | Version Key                  | number    |
 
 ### Authors
 
 `GET http://localhost:3000/api/authors/{id}` 
 
-property | description | data type
---- | --- | ---
-_id | The id of the author | string
-name | The name of the author | string
-age | The age of the author | number
-alive | The status of the author | boolean
-__v | Version Key | number
+| property | description              | data type |
+| -------- | ------------------------ | --------- |
+| _id      | The id of the author     | string    |
+| name     | The name of the author   | string    |
+| age      | The age of the author    | number    |
+| alive    | The status of the author | boolean   |
+| __v      | Version Key              | number    |
 
 ### Genres 
 
 `GET http://localhost:3000/api/genres/{id}`
 
-property | description | data type
---- | --- | ---
-_id | The id of the genre | string
-genre | The genre of the book | string
-__v | Version Key | number
+| property | description           | data type |
+| -------- | --------------------- | --------- |
+| _id      | The id of the genre   | string    |
+| genre    | The genre of the book | string    |
+| __v      | Version Key           | number    |
 
 ## Response Examples
-
-*Provide example responses for each endpoint, showcasing both successful and error scenarios. These examples should help developers understand what to expect when interacting with the API.*
 
 ### Get all books. (Success. Status: 200)
 
@@ -531,14 +564,12 @@ Must have at least one genre
 
 ## Error Handling
 
-*List all possible error codes and their meanings, along with guidance on how to handle these errors in the client application. This will help developers troubleshoot issues and create more robust applications.*
-
-Error message | Description | Possible solution
---- | --- | ---
-Not found | The resource was not found | Check the resource ID 
-Invalid ID | The resource ID is invalid | Check the resource ID
-Unexpected error | An unexpected error occurred | Contact the API provider (or check the logs if you have access)
-Validation error | The request body is invalid | Check the request body
+| Error message    | Description                  | Possible solution                                               |
+| ---------------- | ---------------------------- | --------------------------------------------------------------- |
+| Not found        | The resource was not found   | Check the resource ID                                           |
+| Invalid ID       | The resource ID is invalid   | Check the resource ID                                           |
+| Unexpected error | An unexpected error occurred | Contact the API provider (or check the logs if you have access) |
+| Validation error | The request body is invalid  | Check the request body                                          |
 
 ## Rate Limiting and Throttling
 
