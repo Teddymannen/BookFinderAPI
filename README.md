@@ -5,6 +5,7 @@ An API for finding books
   - [Overview](#overview)
   - [Getting started](#getting-started)
   - [Generating json files](#generating-json-files)
+  - [Testing](#testing)
   - [Documentation](#documentation)
 
 
@@ -63,6 +64,9 @@ npm run gen-data
 npm run gen-json
 ```
 
+## Testing
+
+To run the tests with postman, click on the mailed/attached link and select environment `mockBookFinder`. 
 
 
 ## Documentation
