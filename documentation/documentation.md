@@ -1,7 +1,5 @@
 # Documentation
 
-
-
 - [Documentation](#documentation)
   - [Authentication and Authorization](#authentication-and-authorization)
   - [Endpoint Structure](#endpoint-structure)
@@ -573,5 +571,8 @@ Must have at least one genre
 
 ## Rate Limiting and Throttling
 
-*If the API enforces rate limiting or throttling, explain the limitations and how developers can monitor their usage to avoid being blocked or receiving error responses.*
+The API has a rate limit of 2 requests per second, with a maximum burst of 50 requests. This means that the API can handle 2 requests per second on average, but if there's a sudden surge of requests, it can handle up to 50 requests in a short period of time.
 
+To achieve this rate limiting, the code uses a "token bucket" algorithm implemented by the TokenBucket class. This algorithm works by maintaining a bucket with a fixed capacity of tokens (in this case, 50 tokens). Tokens are added to the bucket at a fixed rate (in this case, 2 tokens per second), up to the bucket's maximum capacity.
+
+Whenever a new request arrives, the code checks if there are any tokens available in the bucket. If there are, it means that the API can handle the request and the token is removed from the bucket to indicate that a request has been made. If there are no tokens available, it means that the API has hit its rate limit and the request is rejected with a 429 status code and a message indicating that the rate limit has been exceeded.
